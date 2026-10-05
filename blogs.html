@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>All Blogs Archive — MyBlog</title>
+    <meta name="description" content="Browse our complete collection of historical essays, dynastic chronicles, and articles." />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- ===== STICKY NAVIGATION BAR ===== -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">My<span>Blog</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html" class="active">Blogs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="admin.html">✍️ Write</a></li>
+            </ul>
+            <div class="nav-auth" id="nav-auth">
+                <!-- JS fills this: Login button OR user greeting -->
+            </div>
+            <button id="theme-toggle">Dark Mode</button>
+        </nav>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+        <h1>All Blog Posts</h1>
+        <p>Explore our full collection of historical chronicles, essays, and stories.</p>
+        <div class="hero-cta-group">
+            <a href="index.html" class="btn btn-outline">← Back to Home</a>
+            <a href="admin.html" class="btn">✍️ Write New Post</a>
+        </div>
+    </section>
+
+    <!-- ===== SEARCH & FILTER SECTION ===== -->
+    <section class="search-section">
+        <div class="search-bar-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="blog-search-input" class="search-input" placeholder="Search across all blog posts by title or keyword..." aria-label="Search all blogs" autocomplete="off" />
+            <button id="clear-search-btn" class="clear-search-btn" title="Clear search">✖</button>
+        </div>
+        <div class="filter-tags">
+            <button class="filter-pill active" data-category="all">All</button>
+            <button class="filter-pill" data-category="history">History</button>
+            <button class="filter-pill" data-category="science">Science</button>
+            <button class="filter-pill" data-category="technology">Technology</button>
+        </div>
+        <p class="search-stats" id="search-stats"></p>
+    </section>
+
+    <!-- ===== MAIN CONTENT — ALL POSTS GRID ===== -->
+    <main>
+        <section class="section" style="padding-top: 1rem;">
+            <div class="post-grid" id="all-posts-grid">
+
+                <!-- ===== BLOG 1 ===== -->
+                <article class="post-card" data-filename="blog1.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog1.html">Rajputana: A Historical Land</a></h3>
+                    <p>Discover the historical region of Rajputana, its rich socio-political structure, warrior ethos, and its eventual transition to modern-day Rajasthan.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>7 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog1.html" data-title="Rajputana: A Historical Land" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog1.html" data-title="Rajputana: A Historical Land" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 2 ===== -->
+                <article class="post-card" data-filename="blog2.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog2.html">The Rajputs</a></h3>
+                    <p>An in-depth look into the Rajput clans, their traditions of honour, kinship, and how they shaped the destiny of the land of Rajputana.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>7 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog2.html" data-title="The Rajputs" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog2.html" data-title="The Rajputs" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 3 ===== -->
+                <article class="post-card" data-filename="blog3.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog3.html">Chola Dynasty</a></h3>
+                    <p>The rise and legacy of the Chola Dynasty — one of the most powerful maritime empires in history, whose influence stretched from South India to Southeast Asia.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>7 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog3.html" data-title="Chola Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog3.html" data-title="Chola Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 4 ===== -->
+                <article class="post-card" data-filename="blog4.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog4.html">Ahom Dynasty</a></h3>
+                    <p>The Ahom Dynasty (1228–1826) ruled the Ahom kingdom in present-day Assam, successfully resisting Mughal expansion for centuries.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>6 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog4.html" data-title="Ahom Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog4.html" data-title="Ahom Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 5 ===== -->
+                <article class="post-card" data-filename="blog5.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog5.html">Kakatiya Dynasty</a></h3>
+                    <p>A South Indian dynasty that ruled most of eastern Deccan region comprising present day Telangana and Andhra Pradesh.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog5.html" data-title="Kakatiya Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog5.html" data-title="Kakatiya Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 6 ===== -->
+                <article class="post-card" data-filename="blog6.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog6.html">Hoysala Empire</a></h3>
+                    <p>Prominent Southern Indian empire that ruled most of the modern-day state of Karnataka between the 10th and 14th centuries.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog6.html" data-title="Hoysala Empire" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog6.html" data-title="Hoysala Empire" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 7 ===== -->
+                <article class="post-card" data-filename="blog7.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog7.html">Chera Dynasty</a></h3>
+                    <p>One of the principal lineages of the early history of the present day state of Kerala and some parts of Tamil Nadu.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog7.html" data-title="Chera Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog7.html" data-title="Chera Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 8 ===== -->
+                <article class="post-card" data-filename="blog8.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog8.html">Vakataka Dynasty</a></h3>
+                    <p>An ancient Indian dynasty that originated in the Deccan in the mid-3rd century CE, patrons of the Ajanta Caves.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog8.html" data-title="Vakataka Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog8.html" data-title="Vakataka Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 9 ===== -->
+                <article class="post-card" data-filename="blog9.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog9.html">Satavahana Dynasty</a></h3>
+                    <p>An ancient Indian dynasty based in the Deccan region, establishing early sea trade routes and trade minting.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog9.html" data-title="Satavahana Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog9.html" data-title="Satavahana Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 10 ===== -->
+                <article class="post-card" data-filename="blog10.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog10.html">Rashtrakuta Dynasty</a></h3>
+                    <p>A royal dynasty ruling large parts of the Indian subcontinent between the 6th and 10th centuries, builders of Kailash Temple.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog10.html" data-title="Rashtrakuta Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog10.html" data-title="Rashtrakuta Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 11 ===== -->
+                <article class="post-card" data-filename="blog11.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog11.html">Pallava Dynasty</a></h3>
+                    <p>An Indian dynasty that existed from 275 CE to 897 CE, ruling southern India and creating the Shore Temple at Mahabalipuram.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog11.html" data-title="Pallava Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog11.html" data-title="Pallava Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 12 ===== -->
+                <article class="post-card" data-filename="blog12.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog12.html">Kadamba Dynasty</a></h3>
+                    <p>An ancient royal family of Karnataka that ruled northern Karnataka and the Konkan from Banavasi.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog12.html" data-title="Kadamba Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog12.html" data-title="Kadamba Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 13 ===== -->
+                <article class="post-card" data-filename="blog13.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog13.html">Eastern Ganga Dynasty</a></h3>
+                    <p>A medieval Indian dynasty that reigned from Kalinga from the 11th century, constructing the iconic Konark Sun Temple.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog13.html" data-title="Eastern Ganga Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog13.html" data-title="Eastern Ganga Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 14 ===== -->
+                <article class="post-card" data-filename="blog14.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog14.html">Gajapati Empire</a></h3>
+                    <p>A medieval Hindu dynasty that originated in the region of Odisha from 1434 to 1541, known for strong military and literature.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog14.html" data-title="Gajapati Empire" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog14.html" data-title="Gajapati Empire" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 15 ===== -->
+                <article class="post-card" data-filename="blog15.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog15.html">Kalachuri Dynasty</a></h3>
+                    <p>An Indian dynasty that ruled in central India during the 10th-12th centuries, renowned for temple architecture.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog15.html" data-title="Kalachuri Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog15.html" data-title="Kalachuri Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 16 ===== -->
+                <article class="post-card" data-filename="blog16.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog16.html">Maitraka Dynasty</a></h3>
+                    <p>Ruled Gujarat in western India from the late 5th to the late 8th century CE, establishing the famed university of Vallabhi.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog16.html" data-title="Maitraka Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog16.html" data-title="Maitraka Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 17 ===== -->
+                <article class="post-card" data-filename="blog17.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog17.html">Pushyabhuti Dynasty</a></h3>
+                    <p>Also known as the Vardhana dynasty, celebrated under Emperor Harshavardhana during the 6th and 7th centuries.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog17.html" data-title="Pushyabhuti Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog17.html" data-title="Pushyabhuti Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 18 ===== -->
+                <article class="post-card" data-filename="blog18.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog18.html">Pala Empire</a></h3>
+                    <p>An imperial power during the Late Classical period, pioneers in Mahayana Buddhism and patrons of Nalanda & Vikramashila.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog18.html" data-title="Pala Empire" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog18.html" data-title="Pala Empire" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 19 ===== -->
+                <article class="post-card" data-filename="blog19.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog19.html">Sena Dynasty</a></h3>
+                    <p>A Hindu dynasty during the Early Medieval period on the Indian subcontinent, that ruled from Bengal after the Palas.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog19.html" data-title="Sena Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog19.html" data-title="Sena Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 20 ===== -->
+                <article class="post-card" data-filename="blog20.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog20.html">Varman Dynasty</a></h3>
+                    <p>The first historical dynasty of the Kamarupa kingdom in present-day Assam, recorded by Xuanzang.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog20.html" data-title="Varman Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog20.html" data-title="Varman Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 21 ===== -->
+                <article class="post-card" data-filename="blog21.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog21.html">Chandelas of Jejakabhukti</a></h3>
+                    <p>A Rajput dynasty in Central India famed for constructing the world-renowned Khajuraho temples.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog21.html" data-title="Chandelas of Jejakabhukti" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog21.html" data-title="Chandelas of Jejakabhukti" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 22 ===== -->
+                <article class="post-card" data-filename="blog22.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog22.html">Paramara Dynasty</a></h3>
+                    <p>An Indian dynasty that ruled Malwa and surrounding areas in west-central India, celebrated under Raja Bhoja.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog22.html" data-title="Paramara Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog22.html" data-title="Paramara Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG 23 ===== -->
+                <article class="post-card" data-filename="blog23.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog23.html">Tomara Dynasty</a></h3>
+                    <p>An Indian dynasty that ruled parts of present-day Delhi and Haryana, founders of the city of Dhillika (Delhi).</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>5 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog23.html" data-title="Tomara Dynasty" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog23.html" data-title="Tomara Dynasty" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+                <!-- BLOG_CARDS_END -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div id="toast"></div>
+
+    <!-- ===== SCROLL-TO-TOP BUTTON ===== -->
+    <svg id="scroll-progress-ring" viewBox="0 0 62 62">
+        <circle cx="31" cy="31" r="28"/>
+        <circle class="progress" cx="31" cy="31" r="28" style="transform: rotate(-90deg); transform-origin: 50% 50%;"/>
+    </svg>
+    <button id="scroll-to-top" title="Back to top" aria-label="Scroll to top">&#8679;</button>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 MyBlog. Made with HTML, CSS &amp; JavaScript.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script>
+        (function () {
+            const btn = document.getElementById('scroll-to-top');
+            const ring = document.getElementById('scroll-progress-ring');
+            const progressCircle = ring ? ring.querySelector('.progress') : null;
+            const circumference = 176;
+            function updateScroll() {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+                if (scrollTop > 300) { btn.classList.add('visible'); ring.classList.add('visible'); }
+                else { btn.classList.remove('visible'); ring.classList.remove('visible'); }
+                if (progressCircle) progressCircle.style.strokeDashoffset = circumference - progress * circumference;
+            }
+            window.addEventListener('scroll', updateScroll, { passive: true });
+            if (btn) btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        })();
+    </script>
+</body>
+
+</html>

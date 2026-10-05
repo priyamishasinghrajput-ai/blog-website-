@@ -1,0 +1,7 @@
+{
+  "name": "myblog",
+  "version": "1.0.0",
+  "description": "MyBlog local publishing system (Node.js, no extra packages)",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" }
+}

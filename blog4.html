@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ahom Dynasty: Unconquered Kingdom of Assam — MyBlog</title>
+    <meta name="description" content="The Ahom Dynasty (1228–1826) ruled the Brahmaputra valley in Assam, successfully resisting Mughal expansion." />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">My<span>Blog</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="admin.html">✍️ Write</a></li>
+            </ul>
+            <button id="theme-toggle">Dark Mode</button>
+        </nav>
+    </header>
+
+    <main class="post-page">
+        <div class="post-nav-bar">
+            <a href="blogs.html" class="back-link">← Back to All Blogs</a>
+            <div class="post-action-btns">
+                <button class="btn-card-action btn-edit action-edit-post" data-file="blog4.html" data-title="Ahom Dynasty">✏️ Edit Post</button>
+                <button class="btn-card-action btn-delete action-delete-post" data-file="blog4.html" data-title="Ahom Dynasty">🗑️ Delete Post</button>
+            </div>
+        </div>
+
+        <article class="post-full">
+            <span class="category">History</span>
+            <h1>Ahom Dynasty: Unconquered Kingdom of Assam</h1>
+            <div class="post-meta">
+                <span>June 15, 2026</span>
+                <span id="read-time">6 min read</span>
+            </div>
+
+            <div class="post-content" id="post-body">
+                <p>The <strong>Ahom Dynasty</strong> (1228–1826) was established by Chaolung Sukaphaa in the lush Brahmaputra Valley of Assam. Over six centuries of sovereign rule, the Ahoms preserved regional independence against seventeen major Mughal invasions.</p>
+
+                <h2>The Battle of Saraighat (1671)</h2>
+                <p>One of the most celebrated naval battles in Indian history occurred on the waters of the Brahmaputra at Saraighat. General <strong>Lachit Borphukan</strong> ingeniously utilized guerrilla naval tactics, terrain advantages, and earthen fortifications to decisively defeat the Mughal imperial army led by Ram Singh I.</p>
+
+                <blockquote>
+                    "My uncle is not greater than my country." — General Lachit Borphukan
+                </blockquote>
+
+                <h2>Paik System and Architectural Heritage</h2>
+                <p>The Ahoms developed the <em>Paik system</em>, an organized state-service system for agriculture and military defense, and constructed remarkable masonry structures like the Rang Ghar and Talatal Ghar at Garhgaon.</p>
+            </div>
+
+            <div class="share-bar">
+                <span>Share:</span>
+                <a href="#" class="share-btn">Twitter</a>
+                <a href="#" class="share-btn">LinkedIn</a>
+            </div>
+        </article>
+
+        <section class="comments-section">
+            <h2>Comments</h2>
+            <div id="comments-list"></div>
+        </section>
+    </main>
+
+    <div id="toast"></div>
+
+    <svg id="scroll-progress-ring" viewBox="0 0 62 62">
+        <circle cx="31" cy="31" r="28"/>
+        <circle class="progress" cx="31" cy="31" r="28" style="transform: rotate(-90deg); transform-origin: 50% 50%;"/>
+    </svg>
+    <button id="scroll-to-top" title="Back to top" aria-label="Scroll to top">&#8679;</button>
+
+    <footer>
+        <p>&copy; 2026 MyBlog. Made with HTML, CSS &amp; JavaScript.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        (function () {
+            const btn = document.getElementById('scroll-to-top');
+            const ring = document.getElementById('scroll-progress-ring');
+            const progressCircle = ring ? ring.querySelector('.progress') : null;
+            const circumference = 176;
+            function updateScroll() {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+                if (scrollTop > 300) { btn.classList.add('visible'); ring.classList.add('visible'); }
+                else { btn.classList.remove('visible'); ring.classList.remove('visible'); }
+                if (progressCircle) progressCircle.style.strokeDashoffset = circumference - progress * circumference;
+            }
+            window.addEventListener('scroll', updateScroll, { passive: true });
+            if (btn) btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        })();
+    </script>
+</body>
+
+</html>

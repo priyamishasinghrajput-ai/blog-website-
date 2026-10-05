@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyBlog — Insights, Stories & History</title>
+    <meta name="description" content="Discover fascinating historical chronicles, insightful essays, and stories on MyBlog." />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- ===== STICKY NAVIGATION BAR ===== -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">My<span>Blog</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="admin.html">✍️ Write</a></li>
+            </ul>
+            <div class="nav-auth" id="nav-auth">
+                <!-- JS fills this: Login button OR user greeting -->
+            </div>
+            <button id="theme-toggle">Dark Mode</button>
+        </nav>
+    </header>
+
+    <!-- ===== HERO SECTION ===== -->
+    <section class="hero">
+        <h1>Welcome to My Blog</h1>
+        <p>Thoughts, chronicles, and historical journeys — curated for curious minds.</p>
+        <div class="hero-cta-group">
+            <a href="#featured-posts" class="btn">Featured Posts ↓</a>
+            <a href="blogs.html" class="btn btn-outline">Explore All Blogs (25+) →</a>
+        </div>
+    </section>
+
+    <!-- ===== SEARCH & FILTER SECTION ===== -->
+    <section class="search-section">
+        <div class="search-bar-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="blog-search-input" class="search-input" placeholder="Search blog title, description, or category..." aria-label="Search blog posts" autocomplete="off" />
+            <button id="clear-search-btn" class="clear-search-btn" title="Clear search">✖</button>
+        </div>
+        <div class="filter-tags">
+            <button class="filter-pill active" data-category="all">All</button>
+            <button class="filter-pill" data-category="history">History</button>
+            <button class="filter-pill" data-category="science">Science</button>
+            <button class="filter-pill" data-category="technology">Technology</button>
+        </div>
+        <p class="search-stats" id="search-stats"></p>
+    </section>
+
+    <!-- ===== MAIN CONTENT — FEATURED POSTS (4 BLOGS) ===== -->
+    <main>
+        <section class="section" id="featured-posts">
+            <div class="section-header">
+                <h2 id="featured-posts-heading">Featured Posts</h2>
+                <a href="blogs.html" class="btn btn-outline" style="font-size: 0.9rem;">View All Blogs →</a>
+            </div>
+
+            <div class="post-grid">
+                <!-- ===== BLOG POST 1 ===== -->
+                <article class="post-card" data-filename="blog1.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog1.html">Rajputana: A Historical Land</a></h3>
+                    <p>Discover the historical region of Rajputana, its rich socio-political structure, warrior ethos, and its transition to modern Rajasthan.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>7 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog1.html" data-title="Rajputana: A Historical Land" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog1.html" data-title="Rajputana: A Historical Land" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG POST 2 ===== -->
+                <article class="post-card" data-filename="blog2.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog2.html">The Rajputs: Honour and Kinship</a></h3>
+                    <p>An in-depth look into the Rajput clans, their traditions of honour, kinship, and how they shaped the destiny of Rajputana.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>7 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog2.html" data-title="The Rajputs: Honour and Kinship" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog2.html" data-title="The Rajputs: Honour and Kinship" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG POST 3 ===== -->
+                <article class="post-card" data-filename="blog3.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog3.html">Chola Dynasty: Maritime Titans</a></h3>
+                    <p>The rise and legacy of the Chola Dynasty — one of the most powerful maritime empires whose influence stretched across Southeast Asia.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>7 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog3.html" data-title="Chola Dynasty: Maritime Titans" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog3.html" data-title="Chola Dynasty: Maritime Titans" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+
+                <!-- ===== BLOG POST 4 ===== -->
+                <article class="post-card" data-filename="blog4.html">
+                    <div class="card-top-row">
+                        <span class="category">History</span>
+                    </div>
+                    <h3><a href="blog4.html">Ahom Dynasty: Unconquered Kingdom</a></h3>
+                    <p>The Ahom Dynasty (1228–1826) ruled the Brahmaputra Valley in Assam, successfully resisting seventeen Mughal imperial expansions.</p>
+                    <div class="post-meta">
+                        <span>June 15, 2026</span>
+                        <span>6 min read</span>
+                    </div>
+                    <div class="card-actions">
+                        <button class="btn-card-action btn-edit" data-file="blog4.html" data-title="Ahom Dynasty: Unconquered Kingdom" title="Edit this blog">✏️ Edit</button>
+                        <button class="btn-card-action btn-delete" data-file="blog4.html" data-title="Ahom Dynasty: Unconquered Kingdom" title="Delete this blog">🗑️ Delete</button>
+                    </div>
+                </article>
+                <!-- BLOG_CARDS_END -->
+            </div>
+
+            <!-- View All Blogs Button -->
+            <div class="section-footer">
+                <a href="blogs.html" class="btn btn-view-all">
+                    <span>Explore All 25+ Blogs in Archive</span>
+                    <span>→</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Toast Notification Container -->
+    <div id="toast"></div>
+
+    <!-- ===== SCROLL-TO-TOP BUTTON ===== -->
+    <svg id="scroll-progress-ring" viewBox="0 0 62 62">
+        <circle cx="31" cy="31" r="28"/>
+        <circle class="progress" cx="31" cy="31" r="28" style="transform: rotate(-90deg); transform-origin: 50% 50%;"/>
+    </svg>
+    <button id="scroll-to-top" title="Back to top" aria-label="Scroll to top">&#8679;</button>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <p>&copy; 2026 MyBlog. Made with HTML, CSS &amp; JavaScript.</p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/app.js"></script>
+    <script>
+        (function () {
+            const btn = document.getElementById('scroll-to-top');
+            const ring = document.getElementById('scroll-progress-ring');
+            const progressCircle = ring ? ring.querySelector('.progress') : null;
+            const circumference = 176;
+            function updateScroll() {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+                if (scrollTop > 300) { btn.classList.add('visible'); ring.classList.add('visible'); }
+                else { btn.classList.remove('visible'); ring.classList.remove('visible'); }
+                if (progressCircle) progressCircle.style.strokeDashoffset = circumference - progress * circumference;
+            }
+            window.addEventListener('scroll', updateScroll, { passive: true });
+            if (btn) btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        })();
+    </script>
+</body>
+
+</html>

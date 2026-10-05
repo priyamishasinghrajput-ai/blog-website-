@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rajputana: A Historical Land — MyBlog</title>
+    <meta name="description" content="Discover the historical region of Rajputana, its rich socio-political structure, warrior ethos, and its transition to modern Rajasthan." />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">My<span>Blog</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="admin.html">✍️ Write</a></li>
+            </ul>
+            <button id="theme-toggle">Dark Mode</button>
+        </nav>
+    </header>
+
+    <main class="post-page">
+        <div class="post-nav-bar">
+            <a href="blogs.html" class="back-link">← Back to All Blogs</a>
+            <div class="post-action-btns">
+                <button class="btn-card-action btn-edit action-edit-post" data-file="blog1.html" data-title="Rajputana: A Historical Land">✏️ Edit Post</button>
+                <button class="btn-card-action btn-delete action-delete-post" data-file="blog1.html" data-title="Rajputana: A Historical Land">🗑️ Delete Post</button>
+            </div>
+        </div>
+
+        <article class="post-full">
+            <span class="category">History</span>
+            <h1>Rajputana: A Historical Land</h1>
+            <div class="post-meta">
+                <span>June 15, 2026</span>
+                <span id="read-time">7 min read</span>
+            </div>
+
+            <div class="post-content" id="post-body">
+                <p><strong>Rājputana</strong>, meaning <em>"Land of the Rajputs"</em>, was a prominent historical region in the Indian subcontinent that encompassed primarily the present-day Indian state of Rajasthan, alongside parts of neighbouring Madhya Pradesh, Gujarat, and areas of Sindh.</p>
+
+                <h2>Historical Origins and the Warrior Ethos</h2>
+                <p>The region was renowned for its distinctive socio-political structure, characterised by numerous Rajput kingdoms and principalities. These kingdoms maintained a strong warrior ethos and a deeply rooted tradition of honor, kinship, and martial governance that defended the northern frontiers for generations.</p>
+
+                <blockquote>
+                    "Rajputana represents an enduring symbol of architectural brilliance, legendary forts, unyielding valour, and cultural richness."
+                </blockquote>
+
+                <h2>Forts, Architecture and Legacy</h2>
+                <p>From the majestic hill forts of Chittorgarh and Kumbhalgarh to the golden sandstone walls of Jaisalmer, Rajputana's architectural heritage remains unmatched. The intricate jali work, stepwells (baoris), and grand palaces testify to the extraordinary craftsmanship of medieval India.</p>
+
+                <p>The Rajputana Agency, established in the 19th century, was later reorganized and officially integrated as the state of Rajasthan in 1949 after India's independence.</p>
+            </div>
+
+            <div class="share-bar">
+                <span>Share:</span>
+                <a href="#" class="share-btn">Twitter</a>
+                <a href="#" class="share-btn">LinkedIn</a>
+            </div>
+        </article>
+
+        <section class="comments-section">
+            <h2>Comments</h2>
+            <div id="comments-list"></div>
+        </section>
+    </main>
+
+    <div id="toast"></div>
+
+    <!-- Circular SVG progress indicator -->
+    <svg id="scroll-progress-ring" viewBox="0 0 62 62">
+        <circle cx="31" cy="31" r="28"/>
+        <circle class="progress" cx="31" cy="31" r="28" style="transform: rotate(-90deg); transform-origin: 50% 50%;"/>
+    </svg>
+    <button id="scroll-to-top" title="Back to top" aria-label="Scroll to top">&#8679;</button>
+
+    <footer>
+        <p>&copy; 2026 MyBlog. Made with HTML, CSS &amp; JavaScript.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        (function () {
+            const btn = document.getElementById('scroll-to-top');
+            const ring = document.getElementById('scroll-progress-ring');
+            const progressCircle = ring ? ring.querySelector('.progress') : null;
+            const circumference = 176;
+            function updateScroll() {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+                if (scrollTop > 300) { btn.classList.add('visible'); ring.classList.add('visible'); }
+                else { btn.classList.remove('visible'); ring.classList.remove('visible'); }
+                if (progressCircle) progressCircle.style.strokeDashoffset = circumference - progress * circumference;
+            }
+            window.addEventListener('scroll', updateScroll, { passive: true });
+            if (btn) btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        })();
+    </script>
+</body>
+
+</html>

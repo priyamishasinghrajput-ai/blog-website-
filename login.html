@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login — MyBlog</title>
+    <meta name="description" content="Log in to your MyBlog account." />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        /* ── Auth Page Layout ─────────────────────────────────── */
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .auth-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+            background: radial-gradient(circle at top center,
+                    color-mix(in srgb, var(--accent) 14%, transparent),
+                    transparent 65%);
+        }
+
+        .auth-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.8rem 2.5rem;
+            width: 100%;
+            max-width: 440px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            animation: slideUp 0.45s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-icon {
+            font-size: 2.8rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.35rem;
+        }
+
+        .auth-header p {
+            color: var(--text-secondary);
+            font-size: 0.97rem;
+        }
+
+        /* ── Form Fields ─────────────────────────────────────── */
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .form-field label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.05rem;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.6rem;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg);
+            color: var(--text-primary);
+            font: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            box-shadow: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            padding: 0.2rem;
+        }
+
+        .toggle-password:hover {
+            color: var(--accent);
+            background: none;
+            transform: translateY(-50%);
+            box-shadow: none;
+        }
+
+        /* ── Extras ──────────────────────────────────────────── */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+            margin-top: -0.2rem;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+        }
+
+        .remember-me input[type="checkbox"] {
+            width: auto;
+            padding: 0;
+            accent-color: var(--accent);
+            width: 16px;
+            height: 16px;
+        }
+
+        .forgot-link {
+            color: var(--accent);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.88rem;
+            transition: opacity 0.2s;
+        }
+
+        .forgot-link:hover {
+            opacity: 0.75;
+        }
+
+        /* ── Submit Button ───────────────────────────────────── */
+        .btn-auth {
+            width: 100%;
+            padding: 0.85rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 12px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px color-mix(in srgb, var(--accent) 35%, transparent);
+            margin-top: 0.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-auth:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px color-mix(in srgb, var(--accent) 45%, transparent);
+        }
+
+        .btn-auth:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ── Divider ─────────────────────────────────────────── */
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            margin: 0.2rem 0;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── Footer link ─────────────────────────────────────── */
+        .auth-footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 1.5rem;
+        }
+
+        .auth-footer a {
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── Error / Success Alert ───────────────────────────── */
+        .auth-alert {
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .auth-alert.error {
+            background: color-mix(in srgb, #dc2626 12%, var(--surface));
+            color: #dc2626;
+            border: 1px solid color-mix(in srgb, #dc2626 30%, transparent);
+            display: block;
+        }
+
+        .auth-alert.success {
+            background: color-mix(in srgb, #16a34a 12%, var(--surface));
+            color: #16a34a;
+            border: 1px solid color-mix(in srgb, #16a34a 30%, transparent);
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== NAVIGATION BAR ===== -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">My<span>Blog</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <button id="theme-toggle">Dark Mode</button>
+        </nav>
+    </header>
+
+    <!-- ===== LOGIN PAGE ===== -->
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-header">
+                <span class="auth-icon">🔐</span>
+                <h1>Welcome Back</h1>
+                <p>Sign in to your MyBlog account</p>
+            </div>
+
+            <!-- Alert Box -->
+            <div id="login-alert" class="auth-alert"></div>
+
+            <form class="auth-form" id="login-form" novalidate>
+                <!-- Email Field -->
+                <div class="form-field">
+                    <label for="login-email">Email Address</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">📧</span>
+                        <input type="email" id="login-email" class="form-input" placeholder="you@example.com" required
+                            autocomplete="email" />
+                    </div>
+                </div>
+
+                <!-- Password Field -->
+                <div class="form-field">
+                    <label for="login-password">Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔑</span>
+                        <input type="password" id="login-password" class="form-input" placeholder="Enter your password"
+                            required autocomplete="current-password" />
+                        <button type="button" class="toggle-password" id="toggle-login-pw"
+                            title="Toggle password visibility">👁️</button>
+                    </div>
+                </div>
+
+                <!-- Remember + Forgot -->
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember-me" />
+                        Remember me
+                    </label>
+                    <a href="#" class="forgot-link">Forgot password?</a>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn-auth" id="login-btn">Sign In →</button>
+            </form>
+
+            <div class="auth-divider">or</div>
+
+            <p class="auth-footer">
+                Don't have an account? <a href="register.html">Create one →</a>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MyBlog. Made with HTML, CSS &amp; JavaScript.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        (function () {
+            // ── Toggle Password Visibility ──────────────────────────
+            const pwInput = document.getElementById('login-password');
+            const toggleBtn = document.getElementById('toggle-login-pw');
+            if (toggleBtn && pwInput) {
+                toggleBtn.addEventListener('click', () => {
+                    const isHidden = pwInput.type === 'password';
+                    pwInput.type = isHidden ? 'text' : 'password';
+                    toggleBtn.textContent = isHidden ? '🙈' : '👁️';
+                });
+            }
+
+            // ── Alert Helper ──────────────────────────────────────
+            function showAlert(msg, type) {
+                const el = document.getElementById('login-alert');
+                el.textContent = msg;
+                el.className = `auth-alert ${type}`;
+            }
+
+            // ── Login Form Submit ─────────────────────────────────
+            const form = document.getElementById('login-form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const email = document.getElementById('login-email').value.trim();
+                const password = document.getElementById('login-password').value;
+                const remember = document.getElementById('remember-me').checked;
+                const btn = document.getElementById('login-btn');
+
+                if (!email || !password) {
+                    showAlert('⚠️ Please fill in all fields.', 'error');
+                    return;
+                }
+
+                // Load users from localStorage
+                const users = JSON.parse(localStorage.getItem('myblog_users') || '[]');
+                const user = users.find(u => u.email === email && u.password === password);
+
+                if (!user) {
+                    showAlert('❌ Invalid email or password. Please try again.', 'error');
+                    return;
+                }
+
+                // Store login session
+                const session = { name: user.name, email: user.email };
+                if (remember) {
+                    localStorage.setItem('myblog_session', JSON.stringify(session));
+                } else {
+                    sessionStorage.setItem('myblog_session', JSON.stringify(session));
+                }
+
+                btn.textContent = '✅ Logged in! Redirecting…';
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1000);
+            });
+
+            // ── If already logged in, redirect ────────────────────
+            const session = localStorage.getItem('myblog_session') || sessionStorage.getItem('myblog_session');
+            if (session) {
+                window.location.replace('index.html');
+            }
+        })();
+    </script>
+</body>
+
+</html>

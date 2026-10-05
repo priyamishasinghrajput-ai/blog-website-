@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!-- 
+    FILE: about.html
+    PURPOSE: The "About Me" page of the blog.
+    Shows:
+      - A profile photo (avatar image)
+      - A short bio about the author
+      - A newsletter email subscription form
+      - Scroll-to-top button
+    Styles: css/style.css | Scripts: js/app.js
+-->
+<html lang="en">
+
+<head>
+    <!-- UTF-8 encoding for correct character rendering -->
+    <meta charset="UTF-8" />
+
+    <!-- Responsive meta tag — ensures proper scaling on mobile screens -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tab/window title — includes site name for brand clarity -->
+    <title>About — My Blog</title>
+
+    <!-- Shared CSS file — same styles used across all pages -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- ===== NAVIGATION BAR =====
+         Sticky top bar — same across all pages for consistent navigation.
+         CSS uses backdrop-filter: blur() for the frosted-glass effect.
+    -->
+    <header>
+        <nav class="navbar">
+            <!-- Logo / site name — links to home page -->
+            <a href="home.html" class="logo">MyBlog</a>
+
+            <!-- Navigation links list -->
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <!-- This anchor link navigates to home.html AND scrolls to the post grid -->
+                <li><a href="home.html#featured-posts">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+
+            <!-- Dark mode toggle — js/app.js handles click and toggles body.dark class -->
+            <button id="theme-toggle">Dark Mode</button>
+        </nav>
+    </header>
+
+    <!-- ===== MAIN CONTENT =====
+         <main> is the primary content landmark for accessibility and SEO.
+    -->
+    <main>
+        <!-- "section about-page" — centers and constrains content to a readable width -->
+        <section class="section about-page">
+
+            <!-- Page main heading — describes this page's purpose -->
+            <h1>About Me</h1>
+
+            <!-- Author profile image.
+                 src="images/avatar.jpg" — ensure this image file exists in the images/ folder.
+                 alt text describes the image for screen readers and if image fails to load.
+                 "avatar" class makes it circular with a border (CSS border-radius: 50%).
+            -->
+            <img src="images/avatar.jpg" alt="Your photo" class="avatar" />
+
+            <!-- Short bio paragraphs about the author -->
+            <p>Hi! I'm Priyamisha Singh. I write about History of India on this blog.</p>
+            <p>This blog was built from scratch using HTML, CSS, and JavaScript — no frameworks, no shortcuts.</p>
+
+            <!-- ===== NEWSLETTER SUBSCRIPTION FORM =====
+                 Allows visitors to subscribe with their email address.
+                 The form submission is handled by js/app.js (looks for id="newsletter-form").
+                 "required" attribute forces the browser to validate the email before submitting.
+            -->
+            <div class="newsletter">
+                <h2>Subscribe to the newsletter</h2>
+                <!-- id="newsletter-form" is used by JavaScript to attach a submit event listener -->
+                <form id="newsletter-form">
+                    <!-- type="email" tells the browser to validate that it's a proper email address -->
+                    <input type="email" placeholder="your@email.com" required />
+                    <!-- type="submit" triggers the form's submit event when clicked -->
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+    <!-- End of main content -->
+
+    <!-- ===== SCROLL-TO-TOP BUTTON =====
+         Fixed at bottom-right. Hidden by default (opacity:0 in CSS).
+         The JavaScript below adds/removes "visible" class based on scroll position.
+    -->
+
+    <!-- SVG circular progress ring — visually shows reading progress -->
+    <svg id="scroll-progress-ring" viewBox="0 0 62 62">
+        <!-- Faint background ring track -->
+        <circle cx="31" cy="31" r="28" />
+        <!-- Animated foreground arc — strokeDashoffset controlled by JS -->
+        <circle class="progress" cx="31" cy="31" r="28" style="transform: rotate(-90deg); transform-origin: 50% 50%;" />
+    </svg>
+
+    <!-- Clickable scroll-to-top button — &#8679; is the ↑ upward arrow character -->
+    <button id="scroll-to-top" title="Back to top" aria-label="Scroll to top">&#8679;</button>
+
+    <!-- ===== FOOTER =====
+         Displayed at the very bottom.
+         margin-top:auto pushes it down in a flex column layout (set on <body> in CSS).
+    -->
+    <footer>
+        <p>&copy; @2026 MyBlog. Made with HTML, CSS &amp; JavaScript.</p>
+    </footer>
+
+    <!-- ===== SCRIPTS =====
+         Loaded at the end of <body> so HTML is parsed before JS runs.
+    -->
+    <!-- Shared app script: dark mode, newsletter form handling, etc. -->
+    <script src="js/app.js"></script>
+
+    <!-- Scroll-to-top script — IIFE keeps scope clean -->
+    <script>
+        (function () {
+            // Grab references to the button and SVG ring
+            const btn = document.getElementById('scroll-to-top');
+            const ring = document.getElementById('scroll-progress-ring');
+
+            // The animated arc circle inside the SVG
+            const progressCircle = ring ? ring.querySelector('.progress') : null;
+
+            // Circumference of the circle: 2 * π * 28 ≈ 176
+            // Used to calculate how much of the arc is "filled" at any scroll position
+            const circumference = 176;
+
+            // Runs each time the user scrolls
+            function updateScroll() {
+                // How many pixels from the top the user has scrolled
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+
+                // Total scrollable height of the document
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+
+                // A fraction between 0 (top) and 1 (bottom)
+                const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+
+                // Show button and ring after scrolling 300px, hide them when near the top
+                if (scrollTop > 300) {
+                    btn.classList.add('visible');
+                    ring.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                    ring.classList.remove('visible');
+                }
+
+                // Animate the SVG ring arc to reflect scroll progress
+                if (progressCircle) progressCircle.style.strokeDashoffset = circumference - progress * circumference;
+            }
+
+            // Attach scroll listener (passive = no preventDefault, better performance)
+            window.addEventListener('scroll', updateScroll, { passive: true });
+
+            // On click: scroll smoothly back to the top of the page
+            btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        })();
+    </script>
+</body>
+
+</html>

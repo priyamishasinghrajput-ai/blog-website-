@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Account — MyBlog</title>
+    <meta name="description" content="Create a new MyBlog account to start reading and writing." />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        /* ── Auth Page Layout ─────────────────────────────────── */
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .auth-wrapper {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem 1.5rem;
+            background: radial-gradient(circle at top center,
+                color-mix(in srgb, var(--accent) 14%, transparent),
+                transparent 65%);
+        }
+
+        .auth-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 2.8rem 2.5rem;
+            width: 100%;
+            max-width: 460px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+            animation: slideUp 0.45s cubic-bezier(0.23, 1, 0.32, 1) both;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .auth-icon {
+            font-size: 2.8rem;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .auth-header h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.35rem;
+        }
+
+        .auth-header p {
+            color: var(--text-secondary);
+            font-size: 0.97rem;
+        }
+
+        /* ── Form Fields ─────────────────────────────────────── */
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+        }
+
+        .form-field label {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-secondary);
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 0.9rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.05rem;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.6rem;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            background: var(--bg);
+            color: var(--text-primary);
+            font: inherit;
+            font-size: 1rem;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+        }
+
+        .form-input.valid {
+            border-color: #16a34a;
+        }
+
+        .form-input.invalid {
+            border-color: #dc2626;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            box-shadow: none;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            padding: 0.2rem;
+        }
+
+        .toggle-password:hover {
+            color: var(--accent);
+            background: none;
+            transform: translateY(-50%);
+            box-shadow: none;
+        }
+
+        /* ── Password Strength Bar ───────────────────────────── */
+        .pw-strength-bar {
+            height: 4px;
+            border-radius: 99px;
+            background: var(--border);
+            margin-top: 0.4rem;
+            overflow: hidden;
+        }
+
+        .pw-strength-fill {
+            height: 100%;
+            border-radius: 99px;
+            width: 0%;
+            transition: width 0.3s ease, background 0.3s ease;
+        }
+
+        .pw-strength-label {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            margin-top: 0.25rem;
+        }
+
+        .hint-text {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            margin-top: 0.2rem;
+        }
+
+        /* ── Submit Button ───────────────────────────────────── */
+        .btn-auth {
+            width: 100%;
+            padding: 0.85rem;
+            font-size: 1.05rem;
+            font-weight: 700;
+            border-radius: 12px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 14px color-mix(in srgb, var(--accent) 35%, transparent);
+            margin-top: 0.5rem;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-auth:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px color-mix(in srgb, var(--accent) 45%, transparent);
+        }
+
+        .btn-auth:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* ── Divider ─────────────────────────────────────────── */
+        .auth-divider {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            color: var(--text-secondary);
+            font-size: 0.82rem;
+            margin: 0.2rem 0;
+        }
+
+        .auth-divider::before,
+        .auth-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* ── Footer link ─────────────────────────────────────── */
+        .auth-footer {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-top: 1.5rem;
+        }
+
+        .auth-footer a {
+            color: var(--accent);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── Alert ───────────────────────────────────────────── */
+        .auth-alert {
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none;
+        }
+
+        .auth-alert.error {
+            background: color-mix(in srgb, #dc2626 12%, var(--surface));
+            color: #dc2626;
+            border: 1px solid color-mix(in srgb, #dc2626 30%, transparent);
+            display: block;
+        }
+
+        .auth-alert.success {
+            background: color-mix(in srgb, #16a34a 12%, var(--surface));
+            color: #16a34a;
+            border: 1px solid color-mix(in srgb, #16a34a 30%, transparent);
+            display: block;
+        }
+
+        /* ── Terms checkbox ──────────────────────────────────── */
+        .terms-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            font-size: 0.88rem;
+            color: var(--text-secondary);
+        }
+
+        .terms-row input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            min-width: 16px;
+            padding: 0;
+            margin-top: 2px;
+            accent-color: var(--accent);
+        }
+
+        .terms-row a {
+            color: var(--accent);
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ===== NAVIGATION BAR ===== -->
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">My<span>Blog</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <button id="theme-toggle">Dark Mode</button>
+        </nav>
+    </header>
+
+    <!-- ===== REGISTER PAGE ===== -->
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-header">
+                <span class="auth-icon">✨</span>
+                <h1>Create Account</h1>
+                <p>Join MyBlog — your stories await</p>
+            </div>
+
+            <!-- Alert Box -->
+            <div id="register-alert" class="auth-alert"></div>
+
+            <form class="auth-form" id="register-form" novalidate>
+                <!-- Full Name -->
+                <div class="form-field">
+                    <label for="reg-name">Full Name</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">👤</span>
+                        <input type="text" id="reg-name" class="form-input" placeholder="Prafull Mayank Singh" required autocomplete="name" />
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="form-field">
+                    <label for="reg-email">Email Address</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">📧</span>
+                        <input type="email" id="reg-email" class="form-input" placeholder="you@example.com" required autocomplete="email" />
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="form-field">
+                    <label for="reg-password">Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">🔑</span>
+                        <input type="password" id="reg-password" class="form-input" placeholder="Create a strong password" required autocomplete="new-password" />
+                        <button type="button" class="toggle-password" id="toggle-reg-pw" title="Toggle password">👁️</button>
+                    </div>
+                    <div class="pw-strength-bar">
+                        <div class="pw-strength-fill" id="pw-strength-fill"></div>
+                    </div>
+                    <span class="pw-strength-label" id="pw-strength-label">Enter a password to see its strength</span>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-field">
+                    <label for="reg-confirm">Confirm Password</label>
+                    <div class="input-wrapper">
+                        <span class="input-icon">✅</span>
+                        <input type="password" id="reg-confirm" class="form-input" placeholder="Repeat your password" required autocomplete="new-password" />
+                        <button type="button" class="toggle-password" id="toggle-reg-confirm" title="Toggle password">👁️</button>
+                    </div>
+                    <span class="hint-text" id="confirm-hint"></span>
+                </div>
+
+                <!-- Terms -->
+                <div class="terms-row">
+                    <input type="checkbox" id="agree-terms" required />
+                    <label for="agree-terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn-auth" id="register-btn">Create Account →</button>
+            </form>
+
+            <div class="auth-divider">or</div>
+
+            <p class="auth-footer">
+                Already have an account? <a href="login.html">Sign in →</a>
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 MyBlog. Made with HTML, CSS &amp; JavaScript.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        (function () {
+            // ── Toggle password fields ─────────────────────────────
+            function togglePw(inputId, btnId) {
+                const input = document.getElementById(inputId);
+                const btn = document.getElementById(btnId);
+                if (!btn || !input) return;
+                btn.addEventListener('click', () => {
+                    const hidden = input.type === 'password';
+                    input.type = hidden ? 'text' : 'password';
+                    btn.textContent = hidden ? '🙈' : '👁️';
+                });
+            }
+            togglePw('reg-password', 'toggle-reg-pw');
+            togglePw('reg-confirm', 'toggle-reg-confirm');
+
+            // ── Password Strength Meter ────────────────────────────
+            const pwInput = document.getElementById('reg-password');
+            const fill = document.getElementById('pw-strength-fill');
+            const label = document.getElementById('pw-strength-label');
+
+            const levels = [
+                { color: '#dc2626', label: '🔴 Very Weak', width: '20%' },
+                { color: '#ea580c', label: '🟠 Weak', width: '40%' },
+                { color: '#ca8a04', label: '🟡 Fair', width: '60%' },
+                { color: '#16a34a', label: '🟢 Strong', width: '80%' },
+                { color: '#15803d', label: '✅ Very Strong', width: '100%' },
+            ];
+
+            pwInput.addEventListener('input', () => {
+                const pw = pwInput.value;
+                let score = 0;
+                if (pw.length >= 8) score++;
+                if (/[A-Z]/.test(pw)) score++;
+                if (/[0-9]/.test(pw)) score++;
+                if (/[^A-Za-z0-9]/.test(pw)) score++;
+                if (pw.length >= 14) score++;
+
+                if (pw.length === 0) {
+                    fill.style.width = '0%';
+                    label.textContent = 'Enter a password to see its strength';
+                } else {
+                    const lvl = levels[Math.min(score - 1, 4)] || levels[0];
+                    fill.style.width = lvl.width;
+                    fill.style.background = lvl.color;
+                    label.textContent = lvl.label;
+                }
+            });
+
+            // ── Confirm password live hint ─────────────────────────
+            const confirmInput = document.getElementById('reg-confirm');
+            const confirmHint = document.getElementById('confirm-hint');
+            confirmInput.addEventListener('input', () => {
+                if (!confirmInput.value) { confirmHint.textContent = ''; return; }
+                if (confirmInput.value === pwInput.value) {
+                    confirmHint.textContent = '✅ Passwords match!';
+                    confirmHint.style.color = '#16a34a';
+                } else {
+                    confirmHint.textContent = '❌ Passwords do not match.';
+                    confirmHint.style.color = '#dc2626';
+                }
+            });
+
+            // ── Alert Helper ──────────────────────────────────────
+            function showAlert(msg, type) {
+                const el = document.getElementById('register-alert');
+                el.textContent = msg;
+                el.className = `auth-alert ${type}`;
+                el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            // ── Register Form Submit ───────────────────────────────
+            const form = document.getElementById('register-form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('reg-name').value.trim();
+                const email = document.getElementById('reg-email').value.trim();
+                const password = document.getElementById('reg-password').value;
+                const confirm = document.getElementById('reg-confirm').value;
+                const agreed = document.getElementById('agree-terms').checked;
+                const btn = document.getElementById('register-btn');
+
+                // Validation
+                if (!name || !email || !password || !confirm) {
+                    showAlert('⚠️ Please fill in all fields.', 'error');
+                    return;
+                }
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    showAlert('⚠️ Please enter a valid email address.', 'error');
+                    return;
+                }
+                if (password.length < 6) {
+                    showAlert('⚠️ Password must be at least 6 characters.', 'error');
+                    return;
+                }
+                if (password !== confirm) {
+                    showAlert('⚠️ Passwords do not match.', 'error');
+                    return;
+                }
+                if (!agreed) {
+                    showAlert('⚠️ You must agree to the Terms of Service.', 'error');
+                    return;
+                }
+
+                // Check duplicate email
+                const users = JSON.parse(localStorage.getItem('myblog_users') || '[]');
+                if (users.find(u => u.email === email)) {
+                    showAlert('⚠️ An account with this email already exists. Try logging in.', 'error');
+                    return;
+                }
+
+                // Save user to localStorage
+                users.push({ name, email, password, createdAt: new Date().toISOString() });
+                localStorage.setItem('myblog_users', JSON.stringify(users));
+
+                showAlert(`🎉 Account created for ${name}! Redirecting to login…`, 'success');
+                btn.textContent = '✅ Account Created!';
+                btn.disabled = true;
+
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 1500);
+            });
+        })();
+    </script>
+</body>
+
+</html>

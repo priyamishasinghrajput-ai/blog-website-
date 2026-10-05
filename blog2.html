@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Rajputs: Honour and Kinship — MyBlog</title>
+    <meta name="description" content="An in-depth look into the Rajput clans, their traditions of honour, kinship, and martial legacy." />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar">
+            <a href="index.html" class="logo">My<span>Blog</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="blogs.html">Blogs</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="admin.html">✍️ Write</a></li>
+            </ul>
+            <button id="theme-toggle">Dark Mode</button>
+        </nav>
+    </header>
+
+    <main class="post-page">
+        <div class="post-nav-bar">
+            <a href="blogs.html" class="back-link">← Back to All Blogs</a>
+            <div class="post-action-btns">
+                <button class="btn-card-action btn-edit action-edit-post" data-file="blog2.html" data-title="The Rajputs">✏️ Edit Post</button>
+                <button class="btn-card-action btn-delete action-delete-post" data-file="blog2.html" data-title="The Rajputs">🗑️ Delete Post</button>
+            </div>
+        </div>
+
+        <article class="post-full">
+            <span class="category">History</span>
+            <h1>The Rajputs: Honour and Kinship</h1>
+            <div class="post-meta">
+                <span>June 15, 2026</span>
+                <span id="read-time">7 min read</span>
+            </div>
+
+            <div class="post-content" id="post-body">
+                <p>The <strong>Rajputs</strong> (from Sanskrit <em>raja-putra</em>, "son of a king") represent a historic patrilineal warrior clan associated with northwestern and northern India. Their chronicles tell stories of uncompromising bravery, code of chivalry, and deep devotion to land and faith.</p>
+
+                <h2>Clans and Lineage (Kula)</h2>
+                <p>Traditional genealogical records group the Rajputs into three major mythological lineages: <em>Suryavansha</em> (Solar line), <em>Chandravansha</em> (Lunar line), and <em>Agnivansha</em> (Fire-born line). Each clan, including the Sisodias of Mewar, Rathores of Marwar, and Kachhwahas of Amber, held sway over formidable principalities.</p>
+
+                <blockquote>
+                    "To a Rajput, death on the battlefield in defence of honor was infinitely preferable to survival in surrender."
+                </blockquote>
+
+                <h2>Cultural Legacy and Fortresses</h2>
+                <p>Beyond battle, the Rajput courts were major patrons of classical Indian miniature painting, devotional poetry, music, and distinct regional architecture featuring delicate cupolas (chhatris) and scalloped arches.</p>
+            </div>
+
+            <div class="share-bar">
+                <span>Share:</span>
+                <a href="#" class="share-btn">Twitter</a>
+                <a href="#" class="share-btn">LinkedIn</a>
+            </div>
+        </article>
+
+        <section class="comments-section">
+            <h2>Comments</h2>
+            <div id="comments-list"></div>
+        </section>
+    </main>
+
+    <div id="toast"></div>
+
+    <svg id="scroll-progress-ring" viewBox="0 0 62 62">
+        <circle cx="31" cy="31" r="28"/>
+        <circle class="progress" cx="31" cy="31" r="28" style="transform: rotate(-90deg); transform-origin: 50% 50%;"/>
+    </svg>
+    <button id="scroll-to-top" title="Back to top" aria-label="Scroll to top">&#8679;</button>
+
+    <footer>
+        <p>&copy; 2026 MyBlog. Made with HTML, CSS &amp; JavaScript.</p>
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script>
+        (function () {
+            const btn = document.getElementById('scroll-to-top');
+            const ring = document.getElementById('scroll-progress-ring');
+            const progressCircle = ring ? ring.querySelector('.progress') : null;
+            const circumference = 176;
+            function updateScroll() {
+                const scrollTop = window.scrollY || document.documentElement.scrollTop;
+                const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const progress = docHeight > 0 ? scrollTop / docHeight : 0;
+                if (scrollTop > 300) { btn.classList.add('visible'); ring.classList.add('visible'); }
+                else { btn.classList.remove('visible'); ring.classList.remove('visible'); }
+                if (progressCircle) progressCircle.style.strokeDashoffset = circumference - progress * circumference;
+            }
+            window.addEventListener('scroll', updateScroll, { passive: true });
+            if (btn) btn.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+        })();
+    </script>
+</body>
+
+</html>
